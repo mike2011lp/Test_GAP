@@ -12,9 +12,9 @@
     using Clinica.Extensiones.Main;
 
     /// <summary>
-    /// Implementacion de la interfaz IUsuariosRepository
+    /// Implementacion de la interfaz IUsuariosService
     /// </summary>
-    public class UsuariosRepository : IUsuariosRepository
+    public class UsuariosService : IUsuariosService
     {
         #region Fields
         private readonly IIdentityRepository myIdentity;
@@ -25,7 +25,7 @@
         #endregion
 
         #region Construction
-        public UsuariosRepository(IIdentityRepository identity, IMapper mapper, IIdentityValidator<Usuario> validator, IPasswordHasher hasher)
+        public UsuariosService(IIdentityRepository identity, IMapper mapper, IIdentityValidator<Usuario> validator, IPasswordHasher hasher)
         {
             this.myIdentity = identity;
             this.myMapper = mapper;

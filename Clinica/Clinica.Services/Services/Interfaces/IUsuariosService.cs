@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Interfaz patron repositorio: Usuarios
+    /// Interfaz servicio: Usuarios
     /// </summary>
-    public interface IUsuariosRepository
+    public interface IUsuariosService
     {
         IQueryable<UsuarioModel> GetAll();
 

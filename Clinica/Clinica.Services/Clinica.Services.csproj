@@ -73,17 +73,17 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IdentityRepository.cs" />
     <Compile Include="Repositories\IIdentityRepository.cs" />
-    <Compile Include="Services\Implementation\CitaRepository.cs" />
+    <Compile Include="Services\Implementation\BaseService.cs" />
+    <Compile Include="Services\Implementation\CitaService.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
-    <Compile Include="Services\Interfaces\ICitasRepository.cs" />
-    <Compile Include="Services\Interfaces\IParametroRepository.cs" />
-    <Compile Include="Services\Interfaces\IRolesRepository.cs" />
-    <Compile Include="Services\Interfaces\IUbicacionRepository.cs" />
-    <Compile Include="Services\Interfaces\IUsuariosRepository.cs" />
-    <Compile Include="Services\Implementation\ParametroRepository.cs" />
-    <Compile Include="Services\Implementation\RolesRepository.cs" />
-    <Compile Include="Services\Implementation\UbicacionRepository.cs" />
-    <Compile Include="Services\Implementation\UsuariosRepository.cs" />
+    <Compile Include="Services\Interfaces\IBaseService.cs" />
+    <Compile Include="Services\Interfaces\ICitaService.cs" />
+    <Compile Include="Services\Interfaces\IParametroService.cs" />
+    <Compile Include="Services\Interfaces\IUbicacionService.cs" />
+    <Compile Include="Services\Interfaces\IUsuariosService.cs" />
+    <Compile Include="Services\Implementation\ParametroService.cs" />
+    <Compile Include="Services\Implementation\UbicacionService.cs" />
+    <Compile Include="Services\Implementation\UsuariosService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Clinica.DataAccess\Clinica.DataAccess.csproj">

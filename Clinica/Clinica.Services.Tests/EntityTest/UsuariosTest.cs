@@ -21,8 +21,8 @@
     public class UsuariosTest
     {
         #region Fields
-        private Mock<IIdentityRepository> myMockRepository { get; }
-        private IUsuariosRepository myRepository { get; }
+        private Mock<IIdentityRepository> myRepository { get; }
+        private IUsuariosService myService { get; }
         private DataContext myContext;
 
         List<Usuario> users = null;
@@ -67,25 +67,25 @@
             };
 
             //Configuración Moq
-            this.myMockRepository = new Mock<IIdentityRepository>();
+            this.myRepository = new Mock<IIdentityRepository>();
 
-            this.myMockRepository.Setup(x => x.GetAll())
+            this.myRepository.Setup(x => x.GetAll())
                 .Returns(users.AsQueryable());
 
-            this.myMockRepository.Setup(x => x.GetByEmail(It.IsAny<string>()))
+            this.myRepository.Setup(x => x.GetByEmail(It.IsAny<string>()))
                 .Returns((string email) => users.Find(s => s.Email == email));
 
-            this.myMockRepository.Setup(x => x.Create(It.IsAny<Usuario>(), It.IsAny<string>()))
+            this.myRepository.Setup(x => x.Create(It.IsAny<Usuario>(), It.IsAny<string>()))
                 .Callback((Usuario user, string password) => users.Add(user));
 
-            this.myMockRepository.Setup(x => x.Update(It.IsAny<Usuario>()))
+            this.myRepository.Setup(x => x.Update(It.IsAny<Usuario>()))
                 .Callback((Usuario user) => users[users.FindIndex(x => x.Id == user.Id)] = user);
 
-            this.myMockRepository.Setup(x => x.Delete(It.IsAny<Usuario>()))
+            this.myRepository.Setup(x => x.Delete(It.IsAny<Usuario>()))
             .Callback((Usuario user) => users.RemoveAt(users.FindIndex(x => x.Id == user.Id)));
 
             //Generar repositorio de acceso para base de datos
-            this.myRepository = new UsuariosRepository(this.myMockRepository.Object, config, new UserValidator<Usuario>(myManager), new PasswordHasher());
+            this.myService = new UsuariosService(this.myRepository.Object, config, new UserValidator<Usuario>(myManager), new PasswordHasher());
         }
         #endregion
 
@@ -94,10 +94,10 @@
         public void GetAll()
         {
             // Act
-            var users = this.myRepository.GetAll();
+            var users = this.myService.GetAll();
 
             // Assert
-            this.myMockRepository.Verify(x => x.GetAll(), Times.Once);
+            this.myRepository.Verify(x => x.GetAll(), Times.Once);
             Assert.AreEqual(1, users.Count());
         }
 
@@ -118,10 +118,10 @@
                 TipoUsuario = new Parametro { Categoria = "TIPO_USUARIO", Codigo = "TU_NA", ValorPrincipal = "NA" }
             };
             // Act
-            this.myRepository.Create(user, "pass_test_1");
+            this.myService.Create(user, "pass_test_1");
             // Assert
-            this.myMockRepository.Verify(x => x.Create(It.IsAny<Usuario>(), It.IsAny<string>()), Times.Once);
-            var labels = this.myRepository.GetAll();
+            this.myRepository.Verify(x => x.Create(It.IsAny<Usuario>(), It.IsAny<string>()), Times.Once);
+            var labels = this.myService.GetAll();
             Assert.AreEqual(2, labels.Count());
         }
 
@@ -138,10 +138,10 @@
 
             };
             // Act
-            this.myRepository.Update(user);
+            this.myService.Update(user);
             // Assert
-            this.myMockRepository.Verify(x => x.Update(It.IsAny<Usuario>()), Times.Once);
-            var items = this.myRepository.GetAll();
+            this.myRepository.Verify(x => x.Update(It.IsAny<Usuario>()), Times.Once);
+            var items = this.myService.GetAll();
             Assert.AreEqual(1, items.Count());
             Assert.AreEqual("123456", items.First().PhoneNumber);
         }
@@ -151,13 +151,13 @@
         {
             const string email = "paciente@test.com";
 
-            var user = this.myRepository.GetByEmail(email);
-            this.myRepository.Delete(user);
+            var user = this.myService.GetByEmail(email);
+            this.myService.Delete(user);
 
             // Assert
-            this.myMockRepository.Verify(x => x.GetByEmail(It.IsAny<string>()), Times.Once);
-            this.myMockRepository.Verify(x => x.Delete(It.IsAny<Usuario>()), Times.Once);
-            Assert.AreEqual(0, this.myRepository.GetAll().Count());
+            this.myRepository.Verify(x => x.GetByEmail(It.IsAny<string>()), Times.Once);
+            this.myRepository.Verify(x => x.Delete(It.IsAny<Usuario>()), Times.Once);
+            Assert.AreEqual(0, this.myService.GetAll().Count());
         }
         #endregion
     }
