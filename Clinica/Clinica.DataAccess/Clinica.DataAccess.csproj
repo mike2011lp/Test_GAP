@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,23 +57,28 @@
     <Compile Include="Entities\Cita.cs" />
     <Compile Include="Entities\Parametro.cs" />
     <Compile Include="Entities\Rol.cs" />
-    <Compile Include="Entities\RolUsuario.cs" />
     <Compile Include="Entities\Ubicacion.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Mappers\CitaMapper.cs" />
     <Compile Include="Mappers\ParametroMapper.cs" />
-    <Compile Include="Mappers\RolMapper.cs" />
     <Compile Include="Mappers\UbicacionMapper.cs" />
     <Compile Include="Mappers\UsuarioMapper.cs" />
-    <Compile Include="Migrations\DataContextMigrationConfig.cs" />
-    <Compile Include="Migrations\DataSeeder.cs" />
+    <Compile Include="Migrations\201807110202593_Initial.cs" />
+    <Compile Include="Migrations\201807110202593_Initial.Designer.cs">
+      <DependentUpon>201807110202593_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807110202593_Initial.resx">
+      <DependentUpon>201807110202593_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Clinica.Constantes\Clinica.Constantes.csproj">
       <Project>{baed250c-9e59-404d-be97-017489d79dac}</Project>

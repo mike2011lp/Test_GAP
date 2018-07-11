@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DataAccessConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemConstants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

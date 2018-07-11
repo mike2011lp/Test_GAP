@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Clinica.DataAccess.Entities
+﻿namespace Clinica.Services.Models
 {
     /// <summary>
-    /// Entidad que representa un parámetro de la aplicación
+    /// Modelo que aplica para la entidad parámetro
     /// </summary>
-    public class Parametro
+    public class ParametroModel
     {
         #region Construction
-        public Parametro() { }
+        public ParametroModel() { }
         #endregion
 
         #region Properties

@@ -1,6 +1,7 @@
 ﻿namespace Clinica.DataAccess.Mappers
 {
     using Clinica.DataAccess.Entities;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
     /// <summary>
@@ -18,8 +19,11 @@
             //Especificacion sobre nombre de tabla
             this.ToTable(NOM_TBL_PARAM);
 
+            this.Property(p => p.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             //Llave primaria
-            this.HasKey(p => new { p.Categoria, p.Codigo } );
+            this.HasKey(p => p.Id);
 
             //Definicion sobre campos requeridos
             this.Property(p => p.Categoria).IsRequired();

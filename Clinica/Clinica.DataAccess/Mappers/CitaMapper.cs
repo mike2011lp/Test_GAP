@@ -22,10 +22,10 @@
             this.HasKey(c => c.Id);
 
             //Definición de llaves foraneas
-            this.HasRequired(c => c.Paciente).WithMany().Map(i => i.MapKey("Paciente"));
-            this.HasRequired(c => c.Medico).WithMany().Map(t => t.MapKey("Medico"));
-            this.HasRequired(c => c.TipoCita).WithMany().Map(t => t.MapKey("TipoCita"));
-            this.HasRequired(c => c.Sitio).WithMany().Map(t => t.MapKey("Sitio"));
+            this.HasRequired(c => c.Paciente).WithMany().WillCascadeOnDelete(false);
+            this.HasRequired(c => c.Medico).WithMany().WillCascadeOnDelete(false);
+            this.HasRequired(c => c.TipoCita).WithMany().WillCascadeOnDelete(false);
+            this.HasRequired(c => c.Sitio).WithMany().WillCascadeOnDelete(false);
         }
         #endregion
     }
