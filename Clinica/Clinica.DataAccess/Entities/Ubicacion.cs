@@ -9,15 +9,13 @@ namespace Clinica.DataAccess.Entities
     /// <summary>
     /// Ubicación donde el usuario será atendido
     /// </summary>
-    public class Ubicacion
+    public class Ubicacion : BaseEntity
     {
         #region Construction
         public Ubicacion() { }
         #endregion
 
         #region Properties
-        public int Codigo { get; set; }
-
         public string Descripcion { get; set; }
 
         public string Direccion { get; set; }

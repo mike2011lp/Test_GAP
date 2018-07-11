@@ -1,18 +1,22 @@
 ﻿namespace Clinica.Services.Repositories
 {
     using Clinica.DataAccess.Context;
+    using Clinica.DataAccess.Entities;
+    using Clinica.Recursos.ResourceFiles;
+    using Clinica.Services.Enums;
     using Clinica.Services.Handlers;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+    using System.Linq;
 
     /// <summary>
-    /// Implementation of Base Repository interface
+    /// Implementación de interfaz base para repositorio
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         #region Fields
         private readonly DataContext myContext;
@@ -23,46 +27,68 @@
         #endregion
 
         #region Construction
-        public BaseRepository(DataContext dataContext)
+        public BaseRepository(DataContext dataContext, IErrorHandler errorHandler)
         {
             this.myContext = dataContext;
+            this.myEntities = dataContext.Set<T>();
+            this.myErrorHandler = errorHandler;
         }
         #endregion
 
         #region Interface Implementation
-        public void Delete(T entity)
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await this.myEntities.ToListAsync();
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async Task<T> GetById(int Id)
         {
-            throw new NotImplementedException();
+            return await this.myEntities.SingleOrDefaultAsync(s => s.Id.CompareTo(Id) == 0);
         }
 
-        public Task<T> GetById(object Id)
+        public int Insert(T entity)
         {
-            throw new NotImplementedException();
+            //Si la entidad es nula, invocar al manejador de errores y lanzar excepción
+            if (entity == null)
+            {
+                throw new ArgumentNullException(string.Format(this.myErrorHandler.GetMessage(MensajesErrorEnum.EntidadNula), entity.GetType().Name, Messages.MSG_DB_ERR_INPUT_NULL));
+            }
+
+            //Añadir la entidad
+            this.myEntities.Add(entity);
+
+            //Retornar el número de registros afectados
+            return this.myContext.SaveChanges();
         }
 
-        public T Insert(T entity)
+        public async Task<int> Update(T entity)
         {
-            throw new NotImplementedException();
+            //Si la entidad es nula, invocar al manejador de errores y lanzar excepción
+            if (entity == null)
+            {
+                throw new ArgumentNullException(string.Format(this.myErrorHandler.GetMessage(MensajesErrorEnum.EntidadNula), entity.GetType().Name, Messages.MSG_DB_ERR_INPUT_NULL));
+            }
+
+            var oldEntity = await this.myEntities.FindAsync(entity.Id);
+            this.myContext.Entry(oldEntity).CurrentValues.SetValues(entity);
+            return this.myContext.SaveChanges();
         }
 
-        public void Save()
+        public int Delete(T entity)
         {
-            throw new NotImplementedException();
-        }
+            //Si la entidad es nula, invocar al manejador de errores y lanzar excepción
+            if (entity == null)
+            {
+                throw new ArgumentNullException(string.Format(this.myErrorHandler.GetMessage(MensajesErrorEnum.EntidadNula), entity.GetType().Name, Messages.MSG_DB_ERR_INPUT_NULL));
+            }
 
-        public T Update(T entity)
-        {
-            throw new NotImplementedException();
+            this.myEntities.Remove(entity);
+            return this.myContext.SaveChanges();
         }
 
         public IEnumerable<T> Where(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return this.myEntities.Where(expression);
         }
         #endregion
     }

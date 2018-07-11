@@ -9,7 +9,7 @@ namespace Clinica.DataAccess.Entities
     /// <summary>
     /// Entidad que representa la cita para determinado usuario
     /// </summary>
-    public class Cita
+    public class Cita : BaseEntity
     {
         #region Construction
         public Cita()
@@ -22,8 +22,6 @@ namespace Clinica.DataAccess.Entities
         #endregion
 
         #region Properties
-        public int Id { get; set; }
-
         public Usuario Paciente { get; set; }
 
         public Usuario Medico { get; set; }

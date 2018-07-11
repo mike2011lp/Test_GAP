@@ -141,6 +141,9 @@
   <data name="MSG_DB_ERR_ENTITY_NULL" xml:space="preserve">
     <value>La entidad es nula {0}. Información adicional {1}.</value>
   </data>
+  <data name="MSG_DB_ERR_INPUT_NULL" xml:space="preserve">
+    <value>La información ingresada es nula.</value>
+  </data>
   <data name="MSG_DB_ERR_MODEL_VALIDATION" xml:space="preserve">
     <value>Los datos de la solicitud no son correctos. Información adicional {0}.</value>
   </data>

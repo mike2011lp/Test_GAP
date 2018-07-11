@@ -3,12 +3,18 @@
     using Clinica.Services.Enums;
     using System;
     using Clinica.Recursos.ResourceFiles;
+    using Microsoft.AspNet.Identity;
 
     /// <summary>
     /// Implementación de la interfaz de manejo de errores
     /// </summary>
     public class ErrorHandler : IErrorHandler
     {
+        public string ErrorIdentityResult(IdentityResult result)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetMessage(MensajesErrorEnum message)
         {
             switch (message)

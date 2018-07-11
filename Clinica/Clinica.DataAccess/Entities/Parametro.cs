@@ -9,15 +9,13 @@ namespace Clinica.DataAccess.Entities
     /// <summary>
     /// Entidad que representa un parámetro de la aplicación
     /// </summary>
-    public class Parametro
+    public class Parametro : BaseEntity
     {
         #region Construction
         public Parametro() { }
         #endregion
 
         #region Properties
-        public int Id { get; set; }
-
         public string Categoria { get; set; }
 
         public string Codigo { get; set; }

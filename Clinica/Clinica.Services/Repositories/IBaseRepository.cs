@@ -13,16 +13,14 @@
     {
         Task<IEnumerable<T>> GetAll();
 
-        Task<T> GetById(object Id);
+        Task<T> GetById(int Id);
 
         IEnumerable<T> Where(Expression<Func<T, bool>> expression);
 
-        T Insert(T entity);
+        int Insert(T entity);
 
-        T Update(T entity);
+        Task<int> Update(T entity);
 
-        void Delete(T entity);
-
-        void Save();
+        int Delete(T entity);
     }
 }

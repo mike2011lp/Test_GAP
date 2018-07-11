@@ -133,6 +133,15 @@ namespace Clinica.Recursos.ResourceFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La información ingresada es nula..
+        /// </summary>
+        public static string MSG_DB_ERR_INPUT_NULL {
+            get {
+                return ResourceManager.GetString("MSG_DB_ERR_INPUT_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Los datos de la solicitud no son correctos. Información adicional {0}..
         /// </summary>
         public static string MSG_DB_ERR_MODEL_VALIDATION {

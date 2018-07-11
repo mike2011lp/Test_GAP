@@ -19,7 +19,7 @@
             this.ToTable(NOM_TBL_UBICACION);
 
             //Llave primaria
-            this.HasKey(u => u.Codigo);
+            this.HasKey(u => u.Id);
 
             //Definicion sobre campos requeridos
             this.Property(u => u.Descripcion).IsRequired();

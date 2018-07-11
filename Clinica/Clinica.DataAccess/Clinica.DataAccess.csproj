@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Cita.cs" />
     <Compile Include="Entities\Parametro.cs" />
     <Compile Include="Entities\Rol.cs" />
