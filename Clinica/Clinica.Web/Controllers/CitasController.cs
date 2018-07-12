@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Clinica.API.Controllers
+namespace Clinica.Web.Controllers
 {
-    public class HomeController : Controller
+    public class CitasController : Controller
     {
+        // GET: Citas
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
     }

@@ -19,6 +19,10 @@
 
         UsuarioModel GetByUserId(string idUsuario);
 
+        UsuarioModel GetByUserName(string userName);
+
+        Task<UsuarioModel> FindUser(string userName, string contrasena);
+
         IQueryable<UsuarioModel> GetByType(string codigo);
 
         IQueryable<UsuarioModel> GetByStatus(string codigo);

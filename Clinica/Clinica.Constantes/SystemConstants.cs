@@ -16,5 +16,9 @@ namespace Clinica.Constantes
         public const string ROL_PACIENTE = "Paciente";
         public const string ROL_MEDICO = "Medico";
         #endregion
+
+        #region Limites
+        public const int LIMIT_EXCEPTION_MSG_DISPLAY_LENGTH = 512;
+        #endregion
     }
 }

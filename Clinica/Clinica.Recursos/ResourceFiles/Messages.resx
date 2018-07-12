@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MSG_AUTH_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>The user name or password is incorrect.</value>
+  </data>
   <data name="MSG_DB_ERR_AUTH_CANNOT_CREATE" xml:space="preserve">
     <value>No se puede crear el usuario.</value>
   </data>
@@ -146,5 +149,8 @@
   </data>
   <data name="MSG_DB_ERR_MODEL_VALIDATION" xml:space="preserve">
     <value>Los datos de la solicitud no son correctos. Información adicional {0}.</value>
+  </data>
+  <data name="MSG_DB_ERR_PARAM_DOES_NOT_EXISTS" xml:space="preserve">
+    <value>El parámetro no existe.</value>
   </data>
 </root>

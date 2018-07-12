@@ -21,7 +21,6 @@
         private readonly IMapper myMapper;
         private readonly IIdentityValidator<Usuario> myValidator;
         private readonly IPasswordHasher myPasswordHasher;
-        //private readonly SignInManager<Usuario> myManager;
         #endregion
 
         #region Construction
@@ -83,6 +82,17 @@
         }
 
         /// <summary>
+        /// Obtener usuario por nombre de usuario
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public UsuarioModel GetByUserName(string userName)
+        {
+            var user = this.myIdentity.GetAll().FirstOrDefault(u => u.UserName.Equals(userName));
+            return user != null ? myMapper.Map<Usuario, UsuarioModel>(user) : null;
+        }
+
+        /// <summary>
         /// Obtener usuarios por estado
         /// </summary>
         /// <param name="codigo"></param>
@@ -112,6 +122,13 @@
             });
 
             return result.AsQueryable();
+        }
+
+        public async Task<UsuarioModel> FindUser(string userName, string password)
+        {
+            Usuario user = await this.myIdentity.FindUser(userName, password);
+
+            return this.myMapper.Map<Usuario, UsuarioModel>(user);
         }
 
         /// <summary>

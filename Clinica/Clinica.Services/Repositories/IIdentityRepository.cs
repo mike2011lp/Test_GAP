@@ -11,12 +11,14 @@
 
         Usuario GetByEmail(string email);
 
+        Task<Usuario> FindUser(string userName, string contrasena);
+
         Task<IdentityResult> Create(Usuario usuario, string contrasena);
 
         Task<IdentityResult> Delete(Usuario usuario);
 
         Task<IdentityResult> Update(Usuario usuario);
 
-        UserManager<Usuario> GetUserManager();
+        UserManager<Usuario, string> GetUserManager();
     }
 }

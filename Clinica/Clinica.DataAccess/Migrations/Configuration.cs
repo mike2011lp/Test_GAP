@@ -131,7 +131,8 @@ namespace Clinica.DataAccess.Migrations
                     var store = new UserStore<Usuario, Rol, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>(context);
                     var manager = new UserManager<Usuario, string>(store);
 
-                    manager.Create(usuario, new PasswordHasher().HashPassword("Test_password"));
+                    //manager.Create(usuario, new PasswordHasher().HashPassword("Test_password"));
+                    manager.Create(usuario, "Test_password");
                     manager.AddToRole(usuario.Id, SystemConstants.ROL_ADMIN);
                 }
 

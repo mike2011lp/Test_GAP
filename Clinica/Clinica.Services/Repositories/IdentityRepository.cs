@@ -7,9 +7,9 @@
 
     public class IdentityRepository : IIdentityRepository
     {
-        private readonly UserManager<Usuario> myUserManager;
+        private readonly UserManager<Usuario, string> myUserManager;
 
-        public IdentityRepository(UserManager<Usuario> userManager)
+        public IdentityRepository(UserManager<Usuario, string> userManager)
         {
             myUserManager = userManager;
         }
@@ -17,6 +17,13 @@
         public IQueryable<Usuario> GetAll() => myUserManager.Users;
 
         public Usuario GetByEmail(string email) => this.GetAll().First(u => u.Email == email);
+
+        public async Task<Usuario> FindUser(string userName, string password)
+        {
+            Usuario user = await this.myUserManager.FindAsync(userName, password);
+
+            return user;
+        }
 
         public Task<IdentityResult> Create(Usuario usuario, string password)
         {
@@ -33,7 +40,7 @@
             return await myUserManager.UpdateAsync(usuario);
         }
 
-        public UserManager<Usuario> GetUserManager()
+        public UserManager<Usuario, string> GetUserManager()
         {
             return myUserManager;
         }

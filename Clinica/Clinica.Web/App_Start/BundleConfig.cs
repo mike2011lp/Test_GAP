@@ -8,24 +8,44 @@ namespace Clinica.Web
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            //Scripts: General
+            bundles.Add(new ScriptBundle("~/bundles/js/own/general").Include(
+                "~/Scripts/common/Enums.js",
+                "~/Scripts/common/Shared.js"
+            ));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            //Bundle for CSS Main Plugins
+            bundles.Add(new StyleBundle("~/Content/css/plugins/main").Include(
+                "~/Content/plugins/bootstrap.css",
+                "~/Content/plugins/bootstrap-datetimepicker.css",
+                //"~/Content/plugins/font-awesome/font-awesome.css",
+                "~/Content/plugins/jquery.gritter.css"
+            ));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            //Bundle for CSS OWN Main
+            bundles.Add(new StyleBundle("~/Content/css/own/main").Include(
+                "~/Content/custom/Site.css",
+                "~/Content/custom/Responsive.css"
+            ));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            //Bundle for JS Main Plugins
+            bundles.Add(new ScriptBundle("~/bundles/js/main").Include(
+                "~/Scripts/plugins/jquery-{version}.js",
+                "~/Scripts/plugins/jquery.validate.js",
+                "~/Scripts/plugins/jquery.validate.unobtrusive.js",
+                "~/Scripts/plugins/jquery.unobtrusive-ajax.js",
+                "~/Scripts/plugins/bootstrap.js",
+                "~/Scripts/plugins/respond.js",
+                "~/Scripts/plugins/spin.js",
+                "~/Scripts/plugins/jquery.spin.js",
+                "~/Scripts/plugins/jquery.gritter.js"
+            ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            //Scripts: Economy Main Login
+            bundles.Add(new ScriptBundle("~/bundles/js/own/main/login").Include(
+                "~/Scripts/login/LoginFunctions.js",
+                "~/Scripts/login/Login.js"
+            ));
         }
     }
 }

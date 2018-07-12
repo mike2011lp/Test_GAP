@@ -61,6 +61,15 @@ namespace Clinica.Recursos.ResourceFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user name or password is incorrect..
+        /// </summary>
+        public static string MSG_AUTH_INVALID_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("MSG_AUTH_INVALID_CREDENTIALS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se puede crear el usuario..
         /// </summary>
         public static string MSG_DB_ERR_AUTH_CANNOT_CREATE {
@@ -147,6 +156,15 @@ namespace Clinica.Recursos.ResourceFiles {
         public static string MSG_DB_ERR_MODEL_VALIDATION {
             get {
                 return ResourceManager.GetString("MSG_DB_ERR_MODEL_VALIDATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El parámetro no existe..
+        /// </summary>
+        public static string MSG_DB_ERR_PARAM_DOES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("MSG_DB_ERR_PARAM_DOES_NOT_EXISTS", resourceCulture);
             }
         }
     }

@@ -1,0 +1,72 @@
+﻿@using Clinica.Constantes
+@using Clinica.Web.Models.Common
+@model Clinica.Web.Models.Usuario.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Ingrese a la App Clinica</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="data:text/plain;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAAAAAAcD2kOAAAAAXNCSVQI5gpbmQAAA4dJREFUaIHt2ltT4jAUAOBzkhbRuiqw7M54GVl3//9PcnF2dWVERUBA2ub44MhFmsuJrT5s+gZN8tEmPU0OwS58ziE+yQ1wgAMc4AAHOMABDvAHHJFvRQQEAAL6UBgxe5zNc5C1ehKRl+0DI45vp4gAANMBbbd2fWjs8qukVzOBi4+k6oc1xW7FNLiw8FsxPJ/LlVMo5+cD/hjV18Dsruik6P+Tb34Ryus+W9b2MWYXObQ2bqG478vNwrIvG8y7rfulmHVJ3ty+PY2zXoELIHuz4o7hwph1CWFTxstCF0BelgK/uLAh40Omaygb8ORieP6bXpp5I6N+EInbMmBcNLIm4yTVt5ROWXIxHHfwNRityrRV08coMea4GpiiYhk7kV4u44q1MuhlnHNc7XPsIeelwD5yOTBf5oVrQ2mmTHFZMFeus7rAeH9YMiUc19IxLDkp74o5Mh2UNrh4Mm1OGt4Fu8qqrXlRe8NuMu00mWHFoWMcZIqPuRNclxFhldVWhx1GnYaiWaa8dcoP327PgEFWeXL2lb+QcF7CvE7/AADy9vLRocF+5MG6v1K0c5Km8HLd32U62ffl7B7ntP1cNVyyzKleqsyqXabMq1yizKxbnsytSlGneF1VMYyItZPFo/semZNuQqTpZDqlJSZvCrIVJcOIajQaA64sYd8lO8KIk8EIcPPGestOMOKwPxfF3ekru8Bi3MuEdi7nKdthzP5OpGnw+slWWAx6aJm5esk2WFwN7RNmH9kC48XMZaLuIZsjj/jz5Baa+DHMWFz0nDM5bNmYr57cuzfGlY3wNWchxpQNZXHKy1zxZFPRMXO8sGTTFT/xXJ5sSjfxkhpM2QQ3tiuUTcXUETPdz5HNAeSElxjlyOYEW/2wMtlcRu19q0q2FFHNdkWyrYRqfa9GthZQjeNKZPs9UckZVvA8uyTY4p8J+6KtslOCjY6OXP8Ud15XuYUZtftrP3egKW+4rmKd/6oX6c1QmEMoqb12nK7mwwyZVcYeAZHeDdaXbGsqwUEzViuZOMJTwxyWtTlBqNHDBAtsIkr2v6ACWOYACX9IQ+8wd0Ug5o+PkxRXNi4QUJzsJHIx/F5ki+uxHQMR8qd5muVKgRAyimtbcn0DDGZdAovrsw8EAHC5V4MKsoqYdcHiem65KdJWT0enYHH9NxkZD4qsydX/bz9XgAMc4AAHOMABDvDHH8/fncDVVr20AQAAAABJRU5ErkJggg=="
+                     alt="">
+
+                @using (Ajax.BeginForm("Login", "Usuarios", new AjaxOptions
+                {
+                    OnBegin = "app.functions.common.ShowLoader",
+                    OnFailure = "app.functions.login.HandleLoginFailure",
+                    OnSuccess = "app.functions.login.HandleLoginSuccess",
+                    OnComplete = "app.functions.common.HideLoader",
+                    HttpMethod = "POST"
+                }, new { id = "frmLogin", @class = "form-signin", role = "form" }))
+
+                {
+                    @Html.AntiForgeryToken()
+
+                    if (TempData[WebConstants.TMP_MESSAGE] != null)
+                    {
+                        var msg = (MessageModel)TempData[WebConstants.TMP_MESSAGE];
+                        Html.RenderPartial("~/Views/Partial/Message.cshtml", msg);
+                    }
+
+                    <!-- Campo usuario -->
+                    @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control", placeholder = "Usuario", required = "required", autofocus = "" })
+                    @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
+
+                    <!-- Campo contraseña -->
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", placeholder = "Contraseña", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Ingresar
+                    </button>
+                    <label class="checkbox pull-right">
+                        <input type="checkbox" value="remember-me">
+                        Recordarme
+                    </label>
+                }
+            </div>
+            <a href="@Url.Action("Registro", "Usuarios")" class="text-center new-account">Registrarse</a>
+        </div>
+    </div>
+</div>
+
+@section PluginStyles {
+    @Styles.Render("~/Content/css/plugins/main")
+}
+
+@section OwnStyles {
+    @Styles.Render("~/Content/css/own/main")
+}
+
+@section PluginScripts {
+    @Scripts.Render("~/bundles/js/main")
+}
+
+@section OwnScripts {
+    @Scripts.Render("~/bundles/js/own/main/login")
+}

@@ -14,17 +14,17 @@ namespace Clinica.DataAccess.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Medico_Id = c.String(nullable: false, maxLength: 128),
                         Paciente_Id = c.String(nullable: false, maxLength: 128),
-                        Sitio_Codigo = c.Int(nullable: false),
+                        Sitio_Id = c.Int(nullable: false),
                         TipoCita_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.Medico_Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.Paciente_Id)
-                .ForeignKey("dbo.Ubicaciones", t => t.Sitio_Codigo)
+                .ForeignKey("dbo.Ubicaciones", t => t.Sitio_Id)
                 .ForeignKey("dbo.Parametros", t => t.TipoCita_Id)
                 .Index(t => t.Medico_Id)
                 .Index(t => t.Paciente_Id)
-                .Index(t => t.Sitio_Codigo)
+                .Index(t => t.Sitio_Id)
                 .Index(t => t.TipoCita_Id);
             
             CreateTable(
@@ -116,11 +116,11 @@ namespace Clinica.DataAccess.Migrations
                 "dbo.Ubicaciones",
                 c => new
                     {
-                        Codigo = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Descripcion = c.String(nullable: false, maxLength: 100),
                         Direccion = c.String(maxLength: 100),
                     })
-                .PrimaryKey(t => t.Codigo);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -138,7 +138,7 @@ namespace Clinica.DataAccess.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Citas", "TipoCita_Id", "dbo.Parametros");
-            DropForeignKey("dbo.Citas", "Sitio_Codigo", "dbo.Ubicaciones");
+            DropForeignKey("dbo.Citas", "Sitio_Id", "dbo.Ubicaciones");
             DropForeignKey("dbo.Citas", "Paciente_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Citas", "Medico_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "TipoUsuario_Id", "dbo.Parametros");
@@ -157,7 +157,7 @@ namespace Clinica.DataAccess.Migrations
             DropIndex("dbo.AspNetUsers", new[] { "Estado_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Citas", new[] { "TipoCita_Id" });
-            DropIndex("dbo.Citas", new[] { "Sitio_Codigo" });
+            DropIndex("dbo.Citas", new[] { "Sitio_Id" });
             DropIndex("dbo.Citas", new[] { "Paciente_Id" });
             DropIndex("dbo.Citas", new[] { "Medico_Id" });
             DropTable("dbo.AspNetRoles");

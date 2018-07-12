@@ -19,6 +19,7 @@ namespace Clinica.Services.Enums
         NoAutorizaBorrado = 6,
         NoAutorizaActualizacion = 7,
         InfoInvalida = 8,
-        NoAutorizaToken = 9
+        NoAutorizaToken = 9,
+        ParametroNoExiste = 10
     }
 }
