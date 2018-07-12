@@ -37,6 +37,13 @@
             return Ok(await this.myService.Get());
         }
 
+        [Authorize]
+        [Route("{categoria}")]
+        public IHttpActionResult GetByCategoria(string categoria)
+        {
+            return Ok(this.myService.Where(p => p.Categoria.Equals(categoria)));
+        }
+
         [Route("create")]
         [Authorize]
         [HttpPost]

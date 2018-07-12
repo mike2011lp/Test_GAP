@@ -11,6 +11,7 @@
     using Clinica.Constantes;
     using Newtonsoft.Json;
     using Clinica.Models.Response;
+    using System.Linq;
 
     /// <summary>
     /// Controlador para operaciones con usuarios
@@ -52,6 +53,18 @@
             {
                 return this.HandleException(ex);
             }
+        }
+
+        /// <summary>
+        /// Logout User from current session
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            this.RemoverUsuario();
+            return RedirectToAction("Index", "Usuarios");
         }
         #endregion
 
@@ -97,8 +110,8 @@
 
                 var claims = new[]
                 {
-                    new Claim(ClaimTypes.Name, model.NombreUsuario),
-                    new Claim("AccessToken", string.Format("Bearer {0}", token.access_token)),
+                    new Claim(ClaimTypes.NameIdentifier, model.NombreUsuario),
+                    new Claim(WebConstants.CLAIM_TYPE_ACCESS_TOKEN, string.Format("Bearer {0}", token.access_token)),
                 };
 
                 var identity = new ClaimsIdentity(claims, "ApplicationCookie");
@@ -108,6 +121,19 @@
 
             //When succeding send link for redirecting to home view
             return Json(Url.Action("Index", "Citas"));
+        }
+
+        /// <summary>
+        /// Remover usuario del sistema
+        /// </summary>
+        protected void RemoverUsuario()
+        {
+            //Sign out of OWIN Authentication
+            Request.GetOwinContext()
+                   .Authentication
+                   .SignOut(HttpContext.GetOwinContext()
+                                       .Authentication.GetAuthenticationTypes()
+                                       .Select(o => o.AuthenticationType).ToArray());
         }
         #endregion
     }

@@ -20,5 +20,13 @@ namespace Clinica.Constantes
         #region Limites
         public const int LIMIT_EXCEPTION_MSG_DISPLAY_LENGTH = 512;
         #endregion
+
+        #region Códigos Parametros
+        public const string PARAM_CAT_TIPO_ID = "TIPO_ID";
+        public const string PARAM_CAT_TIPO_USER = "TIPO_USUARIO";
+        public const string PARAM_CAT_ESTADO_USUARIO = "ESTADO_USUARIO";
+        public const string PARAM_CAT_ESTADO_CITA = "ESTADO_CITA";
+        public const string PARAM_CAT_ESPEC = "ESPECIALIDAD";
+        #endregion
     }
 }

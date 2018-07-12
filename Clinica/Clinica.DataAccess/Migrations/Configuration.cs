@@ -37,7 +37,12 @@ namespace Clinica.DataAccess.Migrations
             //Estados Cita
             new Parametro { Categoria = "ESTADO_CITA", Codigo = "EC_ASIGNADA", ValorPrincipal = "A", ValorSecundario = "Asignada" },
             new Parametro { Categoria = "ESTADO_CITA", Codigo = "EC_CANCELADA", ValorPrincipal = "C", ValorSecundario = "Cancelada" },
-            new Parametro { Categoria = "ESTADO_CITA", Codigo = "EC_ATENDIDA", ValorPrincipal = "T", ValorSecundario = "Atendida" }
+            new Parametro { Categoria = "ESTADO_CITA", Codigo = "EC_ATENDIDA", ValorPrincipal = "T", ValorSecundario = "Atendida" },
+            //Especialidades
+            new Parametro { Categoria = "ESPECIALIDAD", Codigo = "ESP_MG", ValorPrincipal = "MG", ValorSecundario = "Medicina General" },
+            new Parametro { Categoria = "ESPECIALIDAD", Codigo = "ESP_ODO", ValorPrincipal = "ODO", ValorSecundario = "Odontología" },
+            new Parametro { Categoria = "ESPECIALIDAD", Codigo = "ESP_PED", ValorPrincipal = "PED", ValorSecundario = "Pediatría" },
+            new Parametro { Categoria = "ESPECIALIDAD", Codigo = "ESP_NEU", ValorPrincipal = "NEU", ValorSecundario = "Neurología" },
         };
 
         //Información inicial de roles

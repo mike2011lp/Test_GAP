@@ -1,0 +1,34 @@
+﻿@using Clinica.Comun.Enums
+@model Clinica.Web.Models.Common.MessageModel
+
+@if (Model.isVisible)
+{
+    if (Model.severity == (int)TipoMensajeEnum.error)
+    {
+        <div class="alert alert-danger alert-dismissible @(Model.isPersistent ? "persistent" : "")" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error: </strong> @Html.Raw(Model.message)
+        </div>
+    }
+    else if (Model.severity == (int)TipoMensajeEnum.success)
+    {
+        <div class="alert alert-success alert-dismissible @(Model.isPersistent ? "persistent" : "")" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success: </strong> @Html.Raw(Model.message)
+        </div>
+    }
+    else if (Model.severity == (int)TipoMensajeEnum.information)
+    {
+        <div class="alert alert-info alert-dismissible @(Model.isPersistent ? "persistent" : "")" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Information</strong> @Html.Raw(Model.message)
+        </div>
+    }
+    else if (Model.severity == (int)TipoMensajeEnum.warning)
+    {
+        <div class="alert alert-warning alert-dismissible @(Model.isPersistent ? "persistent" : "")" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning: </strong> @Html.Raw(Model.message)
+        </div>
+    }
+}

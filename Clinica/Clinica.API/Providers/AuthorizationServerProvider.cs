@@ -79,7 +79,12 @@
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+
+            if (!string.IsNullOrEmpty(user.Email))
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+            }
+
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
 
             context.Validated(identity);

@@ -19,6 +19,7 @@ namespace Clinica.Web.App_Start
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Usuarios"),
+                CookieName = "Test_Cookie"
             });
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;

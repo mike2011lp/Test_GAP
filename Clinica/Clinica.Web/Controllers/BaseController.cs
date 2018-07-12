@@ -13,6 +13,8 @@
     using Newtonsoft.Json;
     using Clinica.Models.Response;
     using System.Web;
+    using System.Security.Claims;
+    using System.Linq;
 
     /// <summary>
     /// Base controller for application
@@ -29,7 +31,7 @@
         }
 
         /// <summary>
-        /// Identify if a user is or not authenticated
+        /// Bandera para identificar si un usuario está o no autenticado
         /// </summary>
         protected bool IsUserAuthenticated
         {
@@ -41,6 +43,25 @@
                     context.Request.User != null &&
                     context.Request.User.Identity != null &&
                     context.Request.User.Identity.IsAuthenticated;
+            }
+        }
+
+        /// <summary>
+        /// Obtener token de autenticación
+        /// </summary>
+        protected string BearerToken
+        {
+            get
+            {
+                var context = HttpContext.GetOwinContext();
+
+                if (this.IsUserAuthenticated)
+                {
+                    var identity = (ClaimsIdentity)context.Request.User.Identity;
+                    var claim = identity.Claims.FirstOrDefault(c => c.Type.Equals(WebConstants.CLAIM_TYPE_ACCESS_TOKEN));
+                    return claim != null ? claim.Value : null;
+                }
+                return null;
             }
         }
         #endregion

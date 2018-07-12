@@ -1,17 +1,59 @@
-﻿
+﻿@using Clinica.Constantes
+@using Clinica.Web.Models.Common
+@model Clinica.Web.Models.Citas.SolicitarCitaModel
+
 @{
-    Layout = null;
+    ViewBag.Title = "Solicitar Cita";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="col-xs-12">
+    @if (TempData[WebConstants.TMP_MESSAGE] != null)
+    {
+        var msg = (MessageModel)TempData[WebConstants.TMP_MESSAGE];
+        Html.RenderPartial("~/Views/Partial/Message.cshtml", msg);
+    }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+    @using (Html.BeginForm("Solicitar", "Citas", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmSolicitarCita" }))
+    {
+        <!-- Title Section -->
+        <div class="div-title">
+            <span class="sp-title">Solicitar Cita</span>
+        </div>
+
+        @Html.AntiForgeryToken()
+
+        <div class="row jumbotron economy-row">
+            <!-- Servicio que recibe el usuario -->
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 badge-col">
+                <div class="form-group form-badge-group">
+                    @Html.LabelFor(m => m.Servicio, new { @class = "badge-label" })
+                    @Html.DropDownListFor(model => model.Servicio, new SelectList((from e in Model.Servicios
+                                                                                  select new
+                                                                                  {
+                                                                                      CODE = e.Key,
+                                                                                      DESCRIPTION = e.Value
+                                                                                  }),
+                                                                  "CODE", "DESCRIPTION"), "Selecciona Servicio...", new { @class = "form-control badge-input", id = "lstServicios", data_placeholder = "Selecciona Servicio..." })
+                    @Html.ValidationMessageFor(model => model.Servicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section PluginStyles{
+    @Styles.Render("~/Content/css/plugins/main")
+}
+
+@section OwnStyles{
+    @Styles.Render("~/Content/css/own/main")
+}
+
+@section PluginScripts {
+    @Scripts.Render("~/bundles/js/main")
+}
+
+@section OwnScripts {
+    @Scripts.Render("~/bundles/js/own/main/cita")
+}

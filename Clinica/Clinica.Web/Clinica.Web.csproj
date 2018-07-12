@@ -181,6 +181,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Citas\SolicitarCitaModel.cs" />
     <Compile Include="Models\Common\MessageModel.cs" />
     <Compile Include="Models\Usuario\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +247,7 @@
     <Content Include="Views\Partial\Navigation.cshtml" />
     <Content Include="Views\Shared\_Layout_Login.cshtml" />
     <Content Include="Views\Citas\Index.cshtml" />
+    <Content Include="Views\Partial\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
