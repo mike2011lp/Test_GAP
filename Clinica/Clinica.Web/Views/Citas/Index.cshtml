@@ -14,7 +14,14 @@
         Html.RenderPartial("~/Views/Partial/Message.cshtml", msg);
     }
 
-    @using (Html.BeginForm("Solicitar", "Citas", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmSolicitarCita" }))
+    @using (Ajax.BeginForm("Solicitar", "Citas", new AjaxOptions
+    {
+        OnBegin = "app.functions.common.ShowLoader",
+        OnFailure = "app.functions.common.HandleAjaxResponse",
+        OnSuccess = "app.functions.citas.SolicitarSuccess",
+        OnComplete = "app.functions.common.HideLoader",
+        HttpMethod = "POST"
+    }, new { id = "frmSolicitarCita", @class = "", role = "form" }))
     {
         <!-- Title Section -->
         <div class="div-title">
@@ -24,20 +31,78 @@
         @Html.AntiForgeryToken()
 
         <div class="row jumbotron economy-row">
+            <!-- Información Usuario -->
+            <div class="col-xs-12">
+                <div><b>Número Identificacion</b> : @Model.NumeroDocumento</div>
+                <div><b>Nombres</b> : @Model.Nombres</div>
+                <div><b>Apellidos</b> : @Model.Apellidos</div>
+            </div>
+
+            <div class="css-separator"></div>
+
             <!-- Servicio que recibe el usuario -->
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 badge-col">
                 <div class="form-group form-badge-group">
                     @Html.LabelFor(m => m.Servicio, new { @class = "badge-label" })
                     @Html.DropDownListFor(model => model.Servicio, new SelectList((from e in Model.Servicios
-                                                                                  select new
-                                                                                  {
-                                                                                      CODE = e.Key,
-                                                                                      DESCRIPTION = e.Value
-                                                                                  }),
-                                                                  "CODE", "DESCRIPTION"), "Selecciona Servicio...", new { @class = "form-control badge-input", id = "lstServicios", data_placeholder = "Selecciona Servicio..." })
+                                                                                        select new
+                                                                                        {
+                                                                                            CODE = e.Key,
+                                                                                            DESCRIPTION = e.Value
+                                                                                        }),
+                                                        "CODE", "DESCRIPTION"), "Selecciona Servicio...", new { @class = "form-control badge-input", id = "lstServicios", data_placeholder = "Selecciona Servicio..." })
                     @Html.ValidationMessageFor(model => model.Servicio, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <!-- Entidad -->
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 badge-col">
+                <div class="form-group form-badge-group">
+                    @Html.LabelFor(m => m.Entidad, new { @class = "badge-label" })
+                    @Html.DropDownListFor(model => model.Entidad, new SelectList((from e in Model.Entidades
+                                                                                       select new
+                                                                                       {
+                                                                                           CODE = e.Key,
+                                                                                           DESCRIPTION = e.Value
+                                                                                       }),
+                                                        "CODE", "DESCRIPTION"), "Selecciona Entidad...", new { @class = "form-control badge-input", id = "lstEntidades", data_placeholder = "Selecciona Entidad..." })
+                    @Html.ValidationMessageFor(model => model.Entidad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Fecha de la cita -->
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 badge-col">
+                <div class="form-group">
+                    <div class="input-group input-icon-group date">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                        @Html.TextBoxFor(m => m.FechaCita, new { @class = "form-control", placeholder = "Fecha Cita..." })
+                        @Html.ValidationMessageFor(m => m.FechaCita, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hora Cita -->
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 badge-col">
+                <div class="form-group form-badge-group">
+                    @Html.LabelFor(m => m.HoraCita, new { @class = "badge-label" })
+                    @Html.DropDownListFor(model => model.HoraCita, new SelectList((from e in Model.Horas
+                                                                                        select new
+                                                                                        {
+                                                                                            CODE = e.Key,
+                                                                                            DESCRIPTION = e.Value
+                                                                                        }),
+                                                        "CODE", "DESCRIPTION"), "Selecciona Hora...", new { @class = "form-control badge-input", id = "lstHoras", data_placeholder = "Selecciona Hora..." })
+                    @Html.ValidationMessageFor(model => model.HoraCita, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">
+                Confirmar
+            </button>
         </div>
     }
 </div>
@@ -55,5 +120,5 @@
 }
 
 @section OwnScripts {
-    @Scripts.Render("~/bundles/js/own/main/cita")
+    @Scripts.Render("~/bundles/js/own/main/citas")
 }

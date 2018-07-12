@@ -120,6 +120,9 @@
   <data name="MSG_AUTH_INVALID_CREDENTIALS" xml:space="preserve">
     <value>The user name or password is incorrect.</value>
   </data>
+  <data name="MSG_CITA_CREACION_EXITO" xml:space="preserve">
+    <value>La cita se ha creado con éxito.</value>
+  </data>
   <data name="MSG_DB_ERR_AUTH_CANNOT_CREATE" xml:space="preserve">
     <value>No se puede crear el usuario.</value>
   </data>
@@ -140,6 +143,12 @@
   </data>
   <data name="MSG_DB_ERR_AUTH_WRONG_CRED" xml:space="preserve">
     <value>Credenciales incorrectas.</value>
+  </data>
+  <data name="MSG_DB_ERR_CITA_EN_PASADO" xml:space="preserve">
+    <value>No se puede crear una cita para una fecha en el pasado.</value>
+  </data>
+  <data name="MSG_DB_ERR_CITA_MISMO_DIA" xml:space="preserve">
+    <value>No se puede crear más de una cita al día para un paciente.</value>
   </data>
   <data name="MSG_DB_ERR_ENTITY_NULL" xml:space="preserve">
     <value>La entidad es nula {0}. Información adicional {1}.</value>

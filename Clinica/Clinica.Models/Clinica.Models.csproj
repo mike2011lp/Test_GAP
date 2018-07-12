@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\CitaModelRequest.cs" />
+    <Compile Include="Response\EntidadResponseModel.cs" />
     <Compile Include="Response\ErrorResponseModel.cs" />
+    <Compile Include="Response\ExceptionResponseModel.cs" />
     <Compile Include="Response\ParametroResponseModel.cs" />
     <Compile Include="Response\TokenResponseModel.cs" />
+    <Compile Include="Response\UsuarioResponseModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Request\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

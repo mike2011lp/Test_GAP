@@ -15,6 +15,7 @@ body {
     padding: 0;
     margin: 0;
     border: 0;
+    font-size: 12px;
 }
 
     /* Main Container */
@@ -793,4 +794,82 @@ select.form-control.badge-input,
     border-bottom-color: #ddd;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+}
+
+/* Validation Styles */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors .div {
+    text-decoration: underline;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.form-group .field-validation-error, .field-validation-error {
+    text-align: right;
+    display: block;
+    font-weight: 600;
+    background: #b94a48;
+    color: white;
+    padding-left: 10px;
+    font-size: 10px;
+}
+
+/* Container overrides */
+.jumbotron.economy-row {
+    padding: 15px 0;
+    margin: 10px 0;
+    position: relative;
+    background-color: transparent;
+}
+
+.corner-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.btn.auxiliary-buttons.corner-top-right {
+    background: transparent;
+}
+
+/* Modal Overrides */
+.modal-header {
+    background: rgb(107,69,132);
+    color: white;
+}
+
+.modal-body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.modal-footer {
+    background: #eee;
+}
+
+    .modal-footer .btn.btn-default {
+        background: #eee;
+    }
+
+/* Custom */
+.css-separator {
+    clear: both;
+    height: 5px;
 }

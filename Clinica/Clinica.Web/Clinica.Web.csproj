@@ -198,9 +198,11 @@
     <Content Include="Content\plugins\jquery.gritter.css" />
     <Content Include="Content\plugins\jquery.gritter.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\custom\Site.css" />
+    <Content Include="Scripts\citas\Citas.js" />
+    <Content Include="Scripts\citas\CitasFunctions.js" />
     <Content Include="Scripts\common\Enums.js" />
     <Content Include="Scripts\common\Shared.js" />
     <Content Include="Scripts\login\Login.js" />
@@ -254,13 +256,13 @@
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -282,6 +284,10 @@
     <ProjectReference Include="..\Clinica.Models\Clinica.Models.csproj">
       <Project>{3c261346-a728-43b5-a904-a3eb6214f852}</Project>
       <Name>Clinica.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Clinica.Recursos\Clinica.Recursos.csproj">
+      <Project>{57653458-B160-4085-B67F-F6B805D310AB}</Project>
+      <Name>Clinica.Recursos</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

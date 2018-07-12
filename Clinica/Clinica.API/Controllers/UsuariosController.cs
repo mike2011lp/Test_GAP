@@ -37,12 +37,12 @@
             return this.myUsuariosService.GetAll().ToList();
         }
 
-        [Route("{email}")]
+        [Route("{userName}")]
         [Authorize]
         [HttpGet]
-        public UsuarioModel GetByEmail(string email)
+        public UsuarioModel GetByUserName(string userName)
         {
-            return this.myUsuariosService.GetByEmail(email);
+            return this.myUsuariosService.GetByUserName(userName);
         }
 
         [Route("create")]

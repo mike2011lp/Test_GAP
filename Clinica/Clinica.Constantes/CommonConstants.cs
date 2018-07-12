@@ -13,5 +13,8 @@ namespace Clinica.Constantes
     {
         public const string STR_WHITESPACE = " ";
         public const string STR_DOUBLE_PIPE = "||";
+
+        public const string TIME_FORMAT_24_HOURS = "HH:mm";
+        public const string DATE_FORMAT_YEAR_FULL = "MM/dd/yyyy";
     }
 }

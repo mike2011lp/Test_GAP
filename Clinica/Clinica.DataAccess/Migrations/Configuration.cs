@@ -45,6 +45,14 @@ namespace Clinica.DataAccess.Migrations
             new Parametro { Categoria = "ESPECIALIDAD", Codigo = "ESP_NEU", ValorPrincipal = "NEU", ValorSecundario = "Neurología" },
         };
 
+        //Información de Ubicaciones (Entidades)
+        static IList<Ubicacion> UbicacionesIniciales = new List<Ubicacion>
+        {
+            new Ubicacion { Descripcion = "Clinica A", Direccion = "Ubicación A" },
+            new Ubicacion { Descripcion = "Clinica B", Direccion = "Ubicación B" },
+            new Ubicacion { Descripcion = "Clinica C", Direccion = "Ubicación C" }
+        };
+
         //Información inicial de roles
         static string[] RolesIniciales = new string[] { SystemConstants.ROL_ADMIN, SystemConstants.ROL_PACIENTE, SystemConstants.ROL_MEDICO };
 
@@ -77,7 +85,7 @@ namespace Clinica.DataAccess.Migrations
             this.UsuariosSeed(context);
 
             //Seed de Ubicaciones
-            //this.UbicacionesSeed(context);
+            this.UbicacionesSeed(context);
         }
 
         /// <summary>
@@ -140,6 +148,22 @@ namespace Clinica.DataAccess.Migrations
                     manager.Create(usuario, "Test_password");
                     manager.AddToRole(usuario.Id, SystemConstants.ROL_ADMIN);
                 }
+
+                //Guardar cambios
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Seed para la tabla Ubicaciones
+        /// </summary>
+        private void UbicacionesSeed(DataContext context)
+        {
+            //Solo efectuar Seed si los datos del contexto para la tabla están vacios
+            if (context.Ubicaciones.IsEmpty())
+            {
+                //Asignar información inicial de parámetros
+                context.Ubicaciones.AddRange(UbicacionesIniciales);
 
                 //Guardar cambios
                 context.SaveChanges();

@@ -54,6 +54,8 @@
                 throw new ArgumentNullException(string.Format(this.myErrorHandler.GetMessage(MensajesErrorEnum.EntidadNula), entity.GetType().Name, Messages.MSG_DB_ERR_INPUT_NULL));
             }
 
+            this.myContext.Entry(entity).State = EntityState.Added;
+
             //Añadir la entidad
             this.myEntities.Add(entity);
 

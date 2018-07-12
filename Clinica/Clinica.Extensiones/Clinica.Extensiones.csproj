@@ -45,5 +45,11 @@
     <Compile Include="Main\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Clinica.Constantes\Clinica.Constantes.csproj">
+      <Project>{BAED250C-9E59-404D-BE97-017489D79DAC}</Project>
+      <Name>Clinica.Constantes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

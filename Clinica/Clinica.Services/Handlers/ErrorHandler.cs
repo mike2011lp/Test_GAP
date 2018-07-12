@@ -45,8 +45,15 @@
 
                 case MensajesErrorEnum.NoAutorizaToken:
                     return Messages.MSG_DB_ERR_AUTH_CANNOT_RET_TOKEN;
+
                 case MensajesErrorEnum.ParametroNoExiste:
                     return Messages.MSG_DB_ERR_PARAM_DOES_NOT_EXISTS;
+
+                case MensajesErrorEnum.CitaMismoDia:
+                    return Messages.MSG_DB_ERR_CITA_MISMO_DIA;
+
+                case MensajesErrorEnum.CitaFechaPasado:
+                    return Messages.MSG_DB_ERR_CITA_EN_PASADO;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(message), message, null);
             }

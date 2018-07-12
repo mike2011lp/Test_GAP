@@ -70,6 +70,15 @@ namespace Clinica.Recursos.ResourceFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La cita se ha creado con éxito..
+        /// </summary>
+        public static string MSG_CITA_CREACION_EXITO {
+            get {
+                return ResourceManager.GetString("MSG_CITA_CREACION_EXITO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se puede crear el usuario..
         /// </summary>
         public static string MSG_DB_ERR_AUTH_CANNOT_CREATE {
@@ -129,6 +138,24 @@ namespace Clinica.Recursos.ResourceFiles {
         public static string MSG_DB_ERR_AUTH_WRONG_CRED {
             get {
                 return ResourceManager.GetString("MSG_DB_ERR_AUTH_WRONG_CRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No se puede crear una cita para una fecha en el pasado..
+        /// </summary>
+        public static string MSG_DB_ERR_CITA_EN_PASADO {
+            get {
+                return ResourceManager.GetString("MSG_DB_ERR_CITA_EN_PASADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No se puede crear más de una cita al día para un paciente..
+        /// </summary>
+        public static string MSG_DB_ERR_CITA_MISMO_DIA {
+            get {
+                return ResourceManager.GetString("MSG_DB_ERR_CITA_MISMO_DIA", resourceCulture);
             }
         }
         

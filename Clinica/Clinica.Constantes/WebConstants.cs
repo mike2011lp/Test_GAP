@@ -23,6 +23,16 @@ namespace Clinica.Constantes
         public const string URL_TOKEN_STRUCT = "{0}/token";
         public const string URL_API_GET = "{0}/api/{1}";
         public const string URL_API_GET_BY_IDENTIFIER = "{0}/api/{1}/{2}";
+        public const string URL_API_POST_OPERATION = "{0}/api/{1}/{2}";
+        #endregion
+
+        #region Api Resources
+        public const string API_RESOURCE_PARAMETROS = "parametros";
+        public const string API_RESOURCE_USUARIOS = "usuarios";
+        public const string API_RESOURCE_ENTIDADES = "ubicaciones";
+        public const string API_RESOURCE_CITAS = "citas";
+
+        public const string API_OPERATION_CREATE = "create";
         #endregion
 
         #region Headers Definitions

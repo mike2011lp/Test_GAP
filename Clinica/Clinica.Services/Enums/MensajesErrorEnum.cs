@@ -20,6 +20,8 @@ namespace Clinica.Services.Enums
         NoAutorizaActualizacion = 7,
         InfoInvalida = 8,
         NoAutorizaToken = 9,
-        ParametroNoExiste = 10
+        ParametroNoExiste = 10,
+        CitaMismoDia = 11,
+        CitaFechaPasado = 12
     }
 }

@@ -18,7 +18,6 @@ namespace Clinica.Web
             bundles.Add(new StyleBundle("~/Content/css/plugins/main").Include(
                 "~/Content/plugins/bootstrap.css",
                 "~/Content/plugins/bootstrap-datetimepicker.css",
-                //"~/Content/plugins/font-awesome/font-awesome.css",
                 "~/Content/plugins/jquery.gritter.css"
             ));
 
@@ -37,6 +36,8 @@ namespace Clinica.Web
                 "~/Scripts/plugins/bootstrap.js",
                 "~/Scripts/plugins/respond.js",
                 "~/Scripts/plugins/spin.js",
+                "~/Scripts/plugins/moment.js",
+                "~/Scripts/plugins/bootstrap-datetimepicker.js",
                 "~/Scripts/plugins/jquery.spin.js",
                 "~/Scripts/plugins/jquery.gritter.js"
             ));
@@ -46,6 +47,11 @@ namespace Clinica.Web
                 "~/Scripts/login/LoginFunctions.js",
                 "~/Scripts/login/Login.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/own/main/citas").Include(
+                "~/Scripts/citas/CitasFunctions.js",
+                "~/Scripts/citas/Citas.js"
+            ));   
         }
     }
 }

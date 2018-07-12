@@ -23,7 +23,6 @@
 
             //Definición de llaves foraneas
             this.HasRequired(c => c.Paciente).WithMany().WillCascadeOnDelete(false);
-            this.HasRequired(c => c.Medico).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(c => c.TipoCita).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(c => c.Sitio).WithMany().WillCascadeOnDelete(false);
         }
